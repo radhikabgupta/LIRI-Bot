@@ -2,9 +2,9 @@
 var twitterKeysObject = require('./keys.js');
 
 // require twitter, spotify, and request NPM libraries
-var twitter = require('twitter');
-var spotify = require('spotify');
-var request = require('request');
+var Twitter = require('twitter');
+var Spotify = require('spotify');
+var Request = require('request');
 
 // the data is received as an object, but original data was an object too
 // so peel back one layer and get to the actual keys object
@@ -24,6 +24,7 @@ switch (command) {
 
 	// handle the my-tweets command
 	case 'my-tweets':
+		myTweets();
 		break;
 
 	// handle the spotify-this-song command
@@ -41,4 +42,18 @@ switch (command) {
 	// default response when command is not valid
 	default:
 		console.log("Command not Valid. Please try again!");
+}
+
+// if the my-tweets command is received
+function myTweets() {
+
+	// set up credentials object for Twitter access
+	var client = new Twitter({
+		consumer_key: twitterKeys.consumer_key,
+		consumer_secret: twitterKeys.consumer_secret,
+		access_token_key: twitterKeys.access_token_key,
+		access_token_secret: twitterKeys.access_token_secret
+	});
+
+	console.log(client);
 }
