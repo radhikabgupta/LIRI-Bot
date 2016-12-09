@@ -25,6 +25,7 @@ switch (command) {
 
 	// handle the spotify-this-song command
 	case 'spotify-this-song':
+		mySpotify();
 		break;
 
 	// handle the movie-this command
@@ -38,6 +39,8 @@ switch (command) {
 	// default response when command is not valid
 	default:
 		console.log("Command not Valid. Please try again!");
+
+// end the switch statement
 }
 
 // if the my-tweets command is received
@@ -55,7 +58,7 @@ function myTweets() {
 	client.get('statuses/user_timeline', {count: 20, trim_user: false, exclude_replies: true, include_rts: false}, function(error, tweets, response) {
 
 		// if an error is caught, display that and exit out of the function
-		if (error) return console.log(error);
+		if (error) return console.log('Twitter error: ' + error);
 
 		// loop through the 20 returned tweets and log their time and content
 		for (var i=0; i<tweets.length; i++) {
@@ -65,5 +68,41 @@ function myTweets() {
 			console.log(tweets[i].text);
 		}
 
+	// end the get function
 	});
+
+// end the myTweets function
+}
+
+// if the spotify-this-song command is received
+function mySpotify() {
+
+	// first save the name of the song
+	// if it is provided from command line then use that otherwise
+	// set it to 'The Sign' by Ace of Base
+	// using ternary function seems to be the easiest way to do this
+	// basically, if argv[3] exists then set it to that otherwise 'The Sign'
+	var mySong = (process.argv[3]) ? process.argv[3] : 'The Sign Ace of Base';
+
+	// run a search on the Spotify API by track name for mySong
+	Spotify.search({ type: 'track', query: mySong }, function(err, data) {
+
+		// if an error is caught in the call, display that and exit the function
+		if (err) return console.log('Spotify Error: ' + err);
+
+		// if the song is not found in the Spotify database, log that and exit the function
+		if (data.tracks.items.length == 0) return (console.log('No such song found!'));
+
+		// log out the song details, but go with the 0th item returned as API can return
+		// multiple hits - basicaly go with the best match
+		console.log('-------------------')
+		console.log('Artist Name: ' + data.tracks.items[0].artists[0].name);
+		console.log('Song Name: ' + data.tracks.items[0].name);
+		console.log('Preview Link: ' + data.tracks.items[0].preview_url);
+		console.log('Album Title: ' + data.tracks.items[0].album.name);
+
+	// end the search function
+	});
+
+// end the mySpotify function
 }
