@@ -6,6 +6,9 @@ var Twitter = require('twitter');
 var Spotify = require('spotify');
 var Request = require('request');
 
+// require Node built in fs library package for filesystem access
+var fs = require('fs');
+
 // the data is received as an object, but original data was an object too
 // so peel back one layer and get to the actual keys object
 var twitterKeys = twitterKeysObject.twitterKeys;
@@ -14,6 +17,9 @@ var twitterKeys = twitterKeysObject.twitterKeys;
 // my-tweets, spotify-this-song, movie-this, do-what-it-says
 // save the command to a variable so it can be used to switch
 var command = process.argv[2];
+
+// and also grab the commandArgument
+var commandArgument = process.argv[3];
 
 // switch based on the command received
 switch (command) {
@@ -25,16 +31,17 @@ switch (command) {
 
 	// handle the spotify-this-song command
 	case 'spotify-this-song':
-		mySpotify();
+		mySpotify(commandArgument);
 		break;
 
 	// handle the movie-this command
 	case 'movie-this':
-		movieThis();
+		movieThis(commandArgument);
 		break;
 
 	// handle the do-what-it-says command
 	case 'do-what-it-says':
+		doWhatItSays();
 		break;
 
 	// default response when command is not valid
@@ -76,14 +83,14 @@ function myTweets() {
 }
 
 // if the spotify-this-song command is received
-function mySpotify() {
+function mySpotify(receivedSong) {
 
 	// first save the name of the song
 	// if it is provided from command line then use that otherwise
 	// set it to 'The Sign' by Ace of Base
 	// using ternary function seems to be the easiest way to do this
-	// basically, if argv[3] exists then set it to that otherwise 'The Sign'
-	var mySong = (process.argv[3]) ? process.argv[3] : 'The Sign Ace of Base';
+	// basically, if receivedArgument exists then set it to that otherwise 'The Sign'
+	var mySong = receivedSong ? receivedSong : 'The Sign Ace of Base';
 
 	// run a search on the Spotify API by track name for mySong
 	Spotify.search({ type: 'track', query: mySong }, function(err, data) {
@@ -109,12 +116,12 @@ function mySpotify() {
 }
 
 // if the movie-this command is received
-function movieThis() {
+function movieThis(receivedMovie) {
 
 	// first save the name of the movie if provided from command line
 	// otherwise default to "Mr. Nobody"
 	// use ternary function for ease of use
-	var myMovie = (process.argv[3]) ? process.argv[3] : 'Mr. Nobody';
+	var myMovie = receivedMovie ? receivedMovie : 'Mr. Nobody';
 
 	// Then run a request to the OMDB API with the movie specified
 	Request("http://www.omdbapi.com/?t=" + myMovie + "&y=&plot=short&r=json&tomatoes=true", function (error, response, body) {
@@ -140,4 +147,45 @@ function movieThis() {
 	});
 
 // end the movieThis function
+}
+
+// if the do-what-it-says command is received
+function doWhatItSays() {
+
+	// read in the random.txt file
+	fs.readFile('random.txt', 'utf8', function(error, data) {
+
+	// if an error is caught in the read, display that and exit the function
+	if (error) return console.log('Filesystem Read Error: ' + error);
+
+	// split data into an array of function name and argument
+	var dataObject = data.split(',');
+
+	// define the function name and argument name
+	var myFunction = dataObject[0];
+	var myArgument = dataObject[1];
+
+	// modify the myFunction received into the function names used in this app
+	switch (myFunction) {
+		case 'my-tweets':
+			myFunction = 'myTweets';
+			break;
+		case 'spotify-this-song':
+			myFunction = 'mySpotify';
+			break;
+		case 'movie-this':
+			myFunction = 'movieThis';
+			break;
+		default:
+			console.log('Unexpected error in doWhatItSays function');
+	}
+
+	// now that we have myFunction correctly formatted, use eval to evaluate it
+	// and send it the argument too
+	eval(myFunction)(myArgument);
+
+	// end the readFile function
+	});
+
+// end the doWhatItSays function
 }
