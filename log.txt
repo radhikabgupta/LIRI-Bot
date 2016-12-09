@@ -1,0 +1,76 @@
+COMMAND: node liri.js do-what-it-says
+Artist Name: Backstreet Boys
+Song Name: I Want It That Way
+Preview Link: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=null
+Album Title: The Hits--Chapter One
+COMMAND: node liri.js movie-this
+Movie Title: Mr. Nobody
+Release Year: 2009
+IMDB Rating: 7.9
+Production Country: Belgium, Germany, Canada, France
+Language: English, Mohawk
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors/Actresses: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+Rotten Tomatoes Rating: 6.6
+Rotten Tomatoes URL: http://www.rottentomatoes.com/m/mr-nobody/
+COMMAND: node liri.js movie-this 'The Godfather'
+Movie Title: The Godfather
+Release Year: 1972
+IMDB Rating: 9.2
+Production Country: USA
+Language: English, Italian, Latin
+Plot: The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.
+Actors/Actresses: Marlon Brando, Al Pacino, James Caan, Richard S. Castellano
+Rotten Tomatoes Rating: 9.2
+Rotten Tomatoes URL: http://www.rottentomatoes.com/m/godfather/
+COMMAND: node liri.js spotify-this-song
+Artist Name: Ace of Base
+Song Name: The Sign
+Preview Link: https://p.scdn.co/mp3-preview/177e65fc2b8babeaf9266c0ad2a1cb1e18730ae4?cid=null
+Album Title: The Sign (US Album) [Remastered]
+COMMAND: node liri.js spotify-this-song 'Summer of 69'
+Artist Name: Bryan Adams
+Song Name: Summer Of '69
+Preview Link: https://p.scdn.co/mp3-preview/aeec47bd779ecc6bc4cd0f0883694f5bb6cd2867?cid=null
+Album Title: Reckless (30th Anniversary / Deluxe Edition)
+COMMAND: node liri.js my-tweets
+Fri Dec 09 01:15:40 +0000 2016
+Tweet storm now over. :)
+Fri Dec 09 01:15:18 +0000 2016
+Countdown - 1
+Fri Dec 09 01:15:10 +0000 2016
+Countdown - 2
+Fri Dec 09 01:15:05 +0000 2016
+Countdown - 3
+Fri Dec 09 01:14:35 +0000 2016
+Apologies to anyone following me... it's not over yet.
+Fri Dec 09 01:14:11 +0000 2016
+I need at least 6 more tweets for the assignment so the storm continues.
+Fri Dec 09 01:12:38 +0000 2016
+Week 10 - Beginning working with Node.js, and NPM libraries. This tweet storm is for use in the assignment for this week.
+Fri Dec 09 01:11:47 +0000 2016
+Week 9 (cont) - Learned project management through Trello, juggling multiple APIs, advanced JS &amp; jQuery, and much more.
+Fri Dec 09 01:10:19 +0000 2016
+Week 9 (cont) - Project was an app for travelers to explore new locations, see photos of points of interest, weather, Foursquare info
+Fri Dec 09 01:09:15 +0000 2016
+Week 9 - Presentation of the projects in a professional manner
+Fri Dec 09 01:08:55 +0000 2016
+Week 8 - Continuation of the project work
+Week 7 - Start of first major group project
+Fri Dec 09 01:08:35 +0000 2016
+Fri Dec 09 01:08:20 +0000 2016
+Week 6 - A Giftastic App, built around the Giffy API, using more advanced jQuery
+Fri Dec 09 01:07:19 +0000 2016
+Week 5 - Advanced Trivia Game, including timers and looping
+Fri Dec 09 01:06:33 +0000 2016
+Week 4 - A Star Wars RPG game. Role Playing Game game?!?! :P
+Fri Dec 09 01:05:56 +0000 2016
+Week 3 - A Psychic Game, and a Hangman Game
+Fri Dec 09 01:05:33 +0000 2016
+Week 2 - Last week's basic portfolio was turned responsive, and a bootstrap based portfolio was made
+Fri Dec 09 01:05:00 +0000 2016
+Week 1 - A basic portfolio, and home wireframing practice
+Fri Dec 09 01:03:54 +0000 2016
+Warning - Upcoming tweet storm is for an assignment for the UCF Coding Bootcamp
+Fri Dec 09 01:03:25 +0000 2016
+Warning - About to go on a tweet storm.

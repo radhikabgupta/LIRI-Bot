@@ -68,12 +68,13 @@ function myTweets() {
 		// if an error is caught, display that and exit out of the function
 		if (error) return console.log('Twitter error: ' + error);
 
+		// log the command issued to the log.txt file
+		logCommand();
+
 		// loop through the 20 returned tweets and log their time and content
 		for (var i=0; i<tweets.length; i++) {
-			console.log('-------------------')
-			// console.log('Tweet #' + (i+1));
-			console.log(tweets[i].created_at);
-			console.log(tweets[i].text);
+			logThis(tweets[i].created_at);
+			logThis(tweets[i].text);
 		}
 
 	// end the get function
@@ -101,13 +102,15 @@ function mySpotify(receivedSong) {
 		// if the song is not found in the Spotify database, log that and exit the function
 		if (data.tracks.items.length == 0) return (console.log('No such song found!'));
 
+		// log the command issued to the log.txt file
+		logCommand();
+
 		// log out the song details, but go with the 0th item returned as API can return
 		// multiple hits - basicaly go with the best match
-		console.log('-------------------')
-		console.log('Artist Name: ' + data.tracks.items[0].artists[0].name);
-		console.log('Song Name: ' + data.tracks.items[0].name);
-		console.log('Preview Link: ' + data.tracks.items[0].preview_url);
-		console.log('Album Title: ' + data.tracks.items[0].album.name);
+		logThis('Artist Name: ' + data.tracks.items[0].artists[0].name);
+		logThis('Song Name: ' + data.tracks.items[0].name);
+		logThis('Preview Link: ' + data.tracks.items[0].preview_url);
+		logThis('Album Title: ' + data.tracks.items[0].album.name);
 
 	// end the search function
 	});
@@ -129,18 +132,19 @@ function movieThis(receivedMovie) {
 		// If the request is successful (i.e. if the response status code is 200)
 		if (!error && response.statusCode === 200) {
 
+			// log the command issued to the log.txt file
+			logCommand();
+
     		// Parse the returned data (body) and display movie info
-    		// console.log(JSON.parse(body));
-    		console.log('-------------------')
-    		console.log('Movie Title: ' + JSON.parse(body).Title);
-    		console.log('Release Year: ' + JSON.parse(body).Year);
-    		console.log('IMDB Rating: ' + JSON.parse(body).imdbRating);
-    		console.log('Production Country: ' + JSON.parse(body).Country);
-    		console.log('Language: ' + JSON.parse(body).Language);
-    		console.log('Plot: ' + JSON.parse(body).Plot);
-    		console.log('Actors/Actresses: ' + JSON.parse(body).Actors);
-    		console.log('Rotten Tomatoes Rating: ' + JSON.parse(body).tomatoRating);
-    		console.log('Rotten Tomatoes URL: ' + JSON.parse(body).tomatoURL);
+    		logThis('Movie Title: ' + JSON.parse(body).Title);
+    		logThis('Release Year: ' + JSON.parse(body).Year);
+    		logThis('IMDB Rating: ' + JSON.parse(body).imdbRating);
+    		logThis('Production Country: ' + JSON.parse(body).Country);
+    		logThis('Language: ' + JSON.parse(body).Language);
+    		logThis('Plot: ' + JSON.parse(body).Plot);
+    		logThis('Actors/Actresses: ' + JSON.parse(body).Actors);
+    		logThis('Rotten Tomatoes Rating: ' + JSON.parse(body).tomatoRating);
+    		logThis('Rotten Tomatoes URL: ' + JSON.parse(body).tomatoURL);
   		}
 
   	// end the request function
@@ -188,4 +192,44 @@ function doWhatItSays() {
 	});
 
 // end the doWhatItSays function
+}
+
+// logging function
+function logThis(dataToLog) {
+
+	// log the data to console
+	console.log(dataToLog);
+
+	// also append it to log.txt followed by new line escape
+	fs.appendFile('log.txt', dataToLog + '\n', function(err) {
+		
+		// if there is an error log that then end function
+		if (err) return console.log('Error logging data to file: ' + err);
+	
+	// end the appendFile function
+	});
+
+// end the logThis function
+}
+
+// logging command to log.txt file function
+function logCommand() {
+
+	// structure the string that equates to the command that was issued
+	if (commandArgument) {
+		var tempString = "COMMAND: node liri.js " + command + " '" + commandArgument + "'";
+	} else {
+		var tempString = "COMMAND: node liri.js " + command;
+	}
+
+	// append the command to log.txt followed by new line escape
+	fs.appendFile('log.txt', tempString + '\n', function(err) {
+		
+		// if there is an error log that then end function
+		if (err) return console.log('Error logging command to file: ' + err);
+	
+	// end the appendFile function
+	});
+
+// end the logCommand function
 }
