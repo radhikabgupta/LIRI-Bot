@@ -2,6 +2,8 @@
 var twitterKeysObject = require('./keys.js');
 
 // require twitter, spotify, and request NPM libraries
+// install libraries before running this app with the following commands:
+// npm install twitter, npm install spotify, npm install request
 var Twitter = require('twitter');
 var Spotify = require('spotify');
 var Request = require('request');
