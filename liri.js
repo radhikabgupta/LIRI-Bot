@@ -70,10 +70,10 @@ function myTweets() {
 
 		// loop through the 20 returned tweets and log their time and content
 		for (var i=0; i<tweets.length; i++) {
-			console.log('-------------------')
+			logThis('-------------------')
 			// console.log('Tweet #' + (i+1));
-			console.log(tweets[i].created_at);
-			console.log(tweets[i].text);
+			logThis(tweets[i].created_at);
+			logThis(tweets[i].text);
 		}
 
 	// end the get function
@@ -103,11 +103,11 @@ function mySpotify(receivedSong) {
 
 		// log out the song details, but go with the 0th item returned as API can return
 		// multiple hits - basicaly go with the best match
-		console.log('-------------------')
-		console.log('Artist Name: ' + data.tracks.items[0].artists[0].name);
-		console.log('Song Name: ' + data.tracks.items[0].name);
-		console.log('Preview Link: ' + data.tracks.items[0].preview_url);
-		console.log('Album Title: ' + data.tracks.items[0].album.name);
+		logThis('-------------------')
+		logThis('Artist Name: ' + data.tracks.items[0].artists[0].name);
+		logThis('Song Name: ' + data.tracks.items[0].name);
+		logThis('Preview Link: ' + data.tracks.items[0].preview_url);
+		logThis('Album Title: ' + data.tracks.items[0].album.name);
 
 	// end the search function
 	});
@@ -131,16 +131,16 @@ function movieThis(receivedMovie) {
 
     		// Parse the returned data (body) and display movie info
     		// console.log(JSON.parse(body));
-    		console.log('-------------------')
-    		console.log('Movie Title: ' + JSON.parse(body).Title);
-    		console.log('Release Year: ' + JSON.parse(body).Year);
-    		console.log('IMDB Rating: ' + JSON.parse(body).imdbRating);
-    		console.log('Production Country: ' + JSON.parse(body).Country);
-    		console.log('Language: ' + JSON.parse(body).Language);
-    		console.log('Plot: ' + JSON.parse(body).Plot);
-    		console.log('Actors/Actresses: ' + JSON.parse(body).Actors);
-    		console.log('Rotten Tomatoes Rating: ' + JSON.parse(body).tomatoRating);
-    		console.log('Rotten Tomatoes URL: ' + JSON.parse(body).tomatoURL);
+    		logThis('-------------------')
+    		logThis('Movie Title: ' + JSON.parse(body).Title);
+    		logThis('Release Year: ' + JSON.parse(body).Year);
+    		logThis('IMDB Rating: ' + JSON.parse(body).imdbRating);
+    		logThis('Production Country: ' + JSON.parse(body).Country);
+    		logThis('Language: ' + JSON.parse(body).Language);
+    		logThis('Plot: ' + JSON.parse(body).Plot);
+    		logThis('Actors/Actresses: ' + JSON.parse(body).Actors);
+    		logThis('Rotten Tomatoes Rating: ' + JSON.parse(body).tomatoRating);
+    		logThis('Rotten Tomatoes URL: ' + JSON.parse(body).tomatoURL);
   		}
 
   	// end the request function
@@ -188,4 +188,11 @@ function doWhatItSays() {
 	});
 
 // end the doWhatItSays function
+}
+
+// logging function
+function logThis(dataToLog) {
+
+	console.log(dataToLog);
+
 }
