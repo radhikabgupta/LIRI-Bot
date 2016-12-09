@@ -10,10 +10,6 @@ var Request = require('request');
 // so peel back one layer and get to the actual keys object
 var twitterKeys = twitterKeysObject.twitterKeys;
 
-// console log to verify
-// console.log(twitterKeysObject);
-// console.log(twitterKeys);
-
 // possible command line commands include:
 // my-tweets, spotify-this-song, movie-this, do-what-it-says
 // save the command to a variable so it can be used to switch
@@ -55,5 +51,19 @@ function myTweets() {
 		access_token_secret: twitterKeys.access_token_secret
 	});
 
-	console.log(client);
+	// get the 20 most recent tweets, making sure to exclude replies and retweets
+	client.get('statuses/user_timeline', {count: 20, trim_user: false, exclude_replies: true, include_rts: false}, function(error, tweets, response) {
+
+		// if an error is caught, display that and exit out of the function
+		if (error) return console.log(error);
+
+		// loop through the 20 returned tweets and log their time and content
+		for (var i=0; i<tweets.length; i++) {
+			console.log('-------------------')
+			// console.log('Tweet #' + (i+1));
+			console.log(tweets[i].created_at);
+			console.log(tweets[i].text);
+		}
+
+	});
 }
