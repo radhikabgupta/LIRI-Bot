@@ -92,7 +92,7 @@ function mySpotify(receivedSong) {
 	// if it is provided from command line then use that otherwise
 	// set it to 'The Sign' by Ace of Base
 	// using ternary function seems to be the easiest way to do this
-	// basically, if receivedArgument exists then set it to that otherwise 'The Sign'
+	// basically, if receivedSong exists then set it to that otherwise 'The Sign'
 	var mySong = receivedSong ? receivedSong : 'The Sign Ace of Base';
 
 	// run a search on the Spotify API by track name for mySong
