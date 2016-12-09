@@ -165,8 +165,24 @@ function doWhatItSays() {
 	var myFunction = dataObject[0];
 	var myArgument = dataObject[1];
 
-	console.log(myFunction);
-	console.log(myArgument);
+	// modify the myFunction received into the function names used in this app
+	switch (myFunction) {
+		case 'my-tweets':
+			myFunction = 'myTweets';
+			break;
+		case 'spotify-this-song':
+			myFunction = 'mySpotify';
+			break;
+		case 'movie-this':
+			myFunction = 'movieThis';
+			break;
+		default:
+			console.log('Unexpected error in doWhatItSays function');
+	}
+
+	// now that we have myFunction correctly formatted, use eval to evaluate it
+	// and send it the argument too
+	eval(myFunction)(myArgument);
 
 	// end the readFile function
 	});
