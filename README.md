@@ -6,4 +6,4 @@ LIRI Bot is a command line node app that takes in parameters and returns data. T
 
 Please click below to watch video runthrough:
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=N4frpVRUccI" target="_blank"><img src="http://img.youtube.com/vi/N4frpVRUccI/0.jpg" alt="Video Runthrough" width="480" height="360" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=N4frpVRUccI" target="_blank"><img src="http://img.youtube.com/vi/N4frpVRUccI/0.jpg" alt="Video Runthrough" width="480" height="360" border="10" /></a> 
